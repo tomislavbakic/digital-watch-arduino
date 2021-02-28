@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <script src="socket.io/socket.io.js"></script>
+        <title>Digitalni sat</title>
+    </head>
+    <body>
+        <div id="watch" class="clock"></div>
+        <div id="date" class="date"></div>
+    </body>
+
+    <script>
+        var socket=io.connect(location.host+"/arduino");
+        socket.on('time',function(msg){
+            document.getElementById("watch").innerHTML= msg.time;
+            document.getElementById("date").innerHTML= msg.date;
+        });
+    </script>
+
+</html>
